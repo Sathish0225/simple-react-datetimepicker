@@ -1,0 +1,8 @@
+/src
+/node_modules
+/example
+
+.env
+.DS_Store
+
+babel.config.json
