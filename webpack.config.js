@@ -1,11 +1,11 @@
-import path from 'path';
+import path from "path";
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'dist'),
-    libraryTarget: 'commonjs2',
+    filename: "index.js",
+    path: path.resolve(__dirname, "dist"),
+    libraryTarget: "commonjs2",
   },
   module: {
     rules: [
@@ -13,20 +13,20 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            presets: ["@babel/preset-env", "@babel/preset-react"],
           },
         },
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
   externals: {
-    react: 'react',
-    'react-dom': 'react-dom',
+    react: "react",
+    "react-dom": "react-dom",
   },
 };

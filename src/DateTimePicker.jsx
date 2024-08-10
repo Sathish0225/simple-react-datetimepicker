@@ -77,7 +77,7 @@ const DateTimePicker = (props) => {
   useEffect(() => {
     if (calendarShow && inputRef.current && calendarRef.current) {
       const inputRect = inputRef.current.getBoundingClientRect();
-      calendarRef.current.style.left = `${inputRect.left + window.scrollX}px`;
+      // calendarRef.current.style.left = `${inputRect.left + window.scrollX}px`;
     }
   }, [calendarShow]);
 
@@ -159,19 +159,20 @@ const DateTimePicker = (props) => {
   return (
     <>
       <div className="date-time-picker">
-        <div className="input-container">
+        <div className="input-group">
           <input
             ref={inputRef}
             type="text"
             name={props.name}
             id={props.id}
+            className={props.className ?? "form-control r-input c-input"}
             value={dateTime}
             readOnly
             onClick={handleDateTimeChange}
             placeholder={props.placeholder ?? "Select Date and Time"}
           />
-          <span onClick={handleDateTimeChange}>
-            <CiCalendar />
+          <span onClick={handleDateTimeChange} className={"input-group-text i-sufix text-dark"}>
+            <CiCalendar size={16} />
           </span>
         </div>
         {calendarShow && (
@@ -293,9 +294,8 @@ const DaysView = ({
       <div className="date-time-picker-container">
         <div className="datePicker">
           <Header
-            title={`${
-              monthNames[currentDate.getMonth()]
-            } ${currentDate.getFullYear()}`}
+            title={`${monthNames[currentDate.getMonth()]
+              } ${currentDate.getFullYear()}`}
             onPrevious={() => changeMonth(-1)}
             onNext={() => changeMonth(1)}
             onTitleClick={() => setViewMode("months")}
@@ -343,9 +343,10 @@ const getDayClass = (day, currentDate, selectedDate) => {
     selectedDate.getMonth() === currentDate.getMonth() &&
     selectedDate.getDate() === day;
 
-  return ["date-cell", isToday && "today", isSelected && "date-selected"]
-    .filter(Boolean)
-    .join(" ");
+  if (isSelected) return "date-cell date-selected";
+  if (isToday) return "date-cell today";
+
+  return "date-cell";
 };
 
 const Header = ({ title, onPrevious, onNext, onTitleClick }) => (
@@ -421,9 +422,8 @@ const TimeView = ({ selectedTime, handleTimeSelect }) => {
               <tr key={`${m}-minutes-tr`}>
                 <td
                   key={m}
-                  className={`minutes-cell ${
-                    m === minute ? "selected-minutes" : ""
-                  }`}
+                  className={`minutes-cell ${m === minute ? "selected-minutes" : ""
+                    }`}
                   onClick={() => handleMinuteChange(m)}
                 >
                   {m.toString().padStart(2, "0")}
@@ -471,12 +471,11 @@ const MonthsView = ({
         {monthNames.map((month, index) => (
           <div
             key={index}
-            className={`month-cell ${
-              currentYear === new Date().getFullYear() &&
+            className={`month-cell ${currentYear === new Date().getFullYear() &&
               index === new Date().getMonth()
-                ? "month-today"
-                : ""
-            }`}
+              ? "month-today"
+              : ""
+              }`}
             onClick={() => {
               const newDate = new Date(currentDate.setMonth(index));
               setCurrentDate(new Date(newDate));
@@ -512,9 +511,8 @@ const YearsView = ({
         {years.map((year) => (
           <div
             key={year}
-            className={`year-cell ${
-              year === new Date().getFullYear() ? "year-today" : ""
-            }`}
+            className={`year-cell ${year === new Date().getFullYear() ? "year-today" : ""
+              }`}
             onClick={() => {
               const newDate = new Date(currentDate.setFullYear(year));
               setCurrentDate(new Date(newDate));

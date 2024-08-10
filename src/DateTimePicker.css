@@ -1,33 +1,3 @@
-.date-time-picker {
-  position: relative;
-}
-
-.date-time-picker .input-container {
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.date-time-picker .input-container span {
-  padding: 8px;
-  font-size: 12.5px;
-  border: 1px solid #ddd;
-  border-left: none;
-  cursor: pointer;
-}
-
-.date-time-picker .input-container input {
-  width: 300px;
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-right: none;
-}
-
-.date-time-picker input:focus {
-  outline: none;
-}
-
 .date-time-picker-container {
   display: flex;
   justify-content: center;
@@ -167,4 +137,51 @@ td span {
   background: #dbdcdd;
   color: #686868;
   border-radius: 6px;
+}
+
+.hours-cell,
+.minutes-cell,
+.seconds-cell,
+.meridiem-cell {
+  cursor: pointer;
+}
+
+.c-input[readonly],
+.c-input[readonly]:focus,
+.c-input[readonly]:hover {
+    cursor: text;
+    background-color: #fff;
+}
+
+.r-input.c-input[readonly] {
+    border-right: 0px;
+}
+
+.i-sufix {
+    color: #aaa;
+    font-size: 14px;
+    border-radius: 0px;
+    border-left: 0px;
+    border-right: 1px solid #dee2e6 !important;
+}
+
+.l-input {
+    border-left: 0px;
+    padding: .375rem 0;
+}
+
+.r-input {
+    border-right: 0px;
+    padding: .375rem .75rem;
+}
+
+.lr-input {
+    border-left: 0px;
+    border-right: 0px;
+    padding: .375rem 0;
+}
+
+.l-input::-webkit-input-placeholder,
+.lr-input::-webkit-input-placeholder {
+    color: #aaa;
 }

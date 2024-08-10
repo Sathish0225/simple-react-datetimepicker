@@ -4,6 +4,8 @@ import { CiClock2 } from "react-icons/ci";
 import { format, parse } from "date-fns";
 import "./TimePicker.css";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 // Define valid time formats
 const VALID_TIME_FORMATS = [
   "hh:mm a",
@@ -64,7 +66,7 @@ const TimePicker = (props) => {
   useEffect(() => {
     if (pickerShow && inputRef.current && pickerRef.current) {
       const inputRect = inputRef.current.getBoundingClientRect();
-      pickerRef.current.style.left = `${inputRect.left + window.scrollX}px`;
+      // pickerRef.current.style.left = `${inputRect.left + window.scrollX}px`;
     }
   }, [pickerShow]);
 
@@ -109,19 +111,20 @@ const TimePicker = (props) => {
   return (
     <>
       <div className="time-picker">
-        <div className="input-container">
+        <div className="input-group">
           <input
             ref={inputRef}
             type="text"
             name={props.name}
             id={props.id}
+            className={props.className ?? "form-control r-input c-input"}
             value={pickedTime}
             readOnly
             onClick={handleTimeChange}
             placeholder={props.placeholder ?? "Select Time"}
           />
-          <span onClick={handleTimeChange}>
-            <CiClock2 />
+          <span onClick={handleTimeChange} className={"input-group-text i-sufix text-dark"}>
+            <CiClock2 size={16} />
           </span>
         </div>
         {pickerShow && (
@@ -192,9 +195,8 @@ const TimeView = ({ selectedTime, handleTimeSelect }) => {
                 <tr key={`${h}-hours-tr`}>
                   <td
                     key={h}
-                    className={`hours-cell ${
-                      h === hour ? "selected-hours" : ""
-                    }`}
+                    className={`hours-cell ${h === hour ? "selected-hours" : ""
+                      }`}
                     onClick={() => handleHourChange(h)}
                   >
                     {h.toString().padStart(2, "0")}
@@ -211,9 +213,8 @@ const TimeView = ({ selectedTime, handleTimeSelect }) => {
                 <tr key={`${m}-minutes-tr`}>
                   <td
                     key={m}
-                    className={`minutes-cell ${
-                      m === minute ? "selected-minutes" : ""
-                    }`}
+                    className={`minutes-cell ${m === minute ? "selected-minutes" : ""
+                      }`}
                     onClick={() => handleMinuteChange(m)}
                   >
                     {m.toString().padStart(2, "0")}
