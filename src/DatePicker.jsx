@@ -1,8 +1,9 @@
 /* eslint-disable no-loop-func */
 import React, { useState, useRef, useEffect } from "react";
-import { CiCalendar } from "react-icons/ci";
+import { FiChevronUp, FiChevronDown, FiCalendar } from "react-icons/fi";
 import { format, parse } from "date-fns";
-import "./DatePicker.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./style.css";
 
 // Define valid date formats
 const VALID_DATE_FORMATS = [
@@ -84,6 +85,7 @@ const DatePicker = (props) => {
   const handleDateSelect = (date) => {
     const formattedDate = format(date, dateFormat);
     setDatePicked(formattedDate);
+    setCurrentDate(date);
     setSelectedDate(date);
     setCalendarShow(false);
 
@@ -136,7 +138,7 @@ const DatePicker = (props) => {
   return (
     <>
       <div className="date-picker">
-        <div className="input-container">
+        <div className="input-group">
           <input
             ref={inputRef}
             type="text"
@@ -148,12 +150,12 @@ const DatePicker = (props) => {
             onClick={handleDateChange}
             placeholder={props.placeholder ?? "Select Date"}
           />
-          <span onClick={handleDateChange} className={"input-group-text i-sufix text-dark"}>
-            <CiCalendar />
+          <span onClick={handleDateChange} className={"input-group-text i-sufix text-secondary"}>
+            <FiCalendar size={16} />
           </span>
         </div>
         {calendarShow && (
-          <div ref={calendarRef} className="calendar">
+          <div ref={calendarRef} className={`calendar ${calendarShow ? "calendar-show" : ""}`}>
             {viewMode === "days" && (
               <DaysView
                 currentDate={currentDate}
@@ -200,18 +202,18 @@ const DaysView = ({
 }) => {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
+    "Janary",
+    "Febuary",
+    "March",
+    "April",
     "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
   const daysInMonth = new Date(
@@ -268,7 +270,7 @@ const DaysView = ({
         <thead>
           <tr>
             {daysOfWeek.map((day) => (
-              <th key={day}>{day}</th>
+              <th key={day} className="week-days">{day}</th>
             ))}
           </tr>
         </thead>
@@ -308,13 +310,15 @@ const getDayClass = (day, currentDate, selectedDate) => {
 
 const Header = ({ title, onPrevious, onNext, onTitleClick }) => (
   <div className="ymheaderdiv">
-    <button onClick={onPrevious} className="previous-button">
-      {"<"}
-    </button>
     <h3 onClick={onTitleClick}>{title}</h3>
-    <button onClick={onNext} className="next-button">
-      {">"}
-    </button>
+    <div>
+      <button onClick={onPrevious} className="previous-button">
+        <FiChevronUp size={20} />
+      </button>
+      <button onClick={onNext} className="next-button">
+        <FiChevronDown size={20} />
+      </button>
+    </div>
   </div>
 );
 

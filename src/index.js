@@ -4,11 +4,7 @@ import TimePicker from "./TimePicker";
 import DateTimeRangePicker from "./DateTimeRangePicker";
 import DateRangePicker from "./DateRangePicker";
 
-import "./DateRangePicker.css";
-import "./DateTimeRangePicker.css";
-import "./DateTimePicker.css";
-import "./DatePicker.css";
-import "./TimePicker.css";
+import "./style.css";
 
 export {
   DateTimePicker,

@@ -1,0 +1,311 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 8px;
+}
+
+.week-days {
+  color: #bdbdbd;
+}
+
+td span {
+  display: block;
+  cursor: pointer;
+}
+
+.date-time-picker-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar,
+.picker {
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.calendar-show,
+.picker-show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.ymheaderdiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  gap: 20px;
+}
+
+.ymheaderdiv h3 {
+  font-size: 16px;
+  margin-bottom: 3px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+}
+
+.ymheaderdiv h3:hover {
+  background: #f0f0f0 !important;
+}
+
+.ymheaderdiv div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.month-grid,
+.year-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.month-cell,
+.year-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.date-cell,
+.month-cell,
+.year-cell {
+  width: 50px !important;
+  height: 50px !important;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.month-today,
+.year-today,
+.today {
+  background: #45494e;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.month-selected,
+.year-selected,
+.date-selected,
+.date-selected-startend {
+  background: #bdbdbd;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.date-selected-start {
+  background: #bdbdbd;
+  color: #fff;
+  text-align: center;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.date-selected-end {
+  background: #bdbdbd;
+  color: #fff;
+  text-align: center;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.date-in-range {
+  background: #f0f0f0;
+  border-radius: unset !important;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.previous-button,
+.next-button,
+.clear-button,
+.today-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  font-weight: 500;
+  background: none !important;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.previous-button:hover,
+.next-button:hover,
+.clear-button:hover,
+.today-button:hover {
+  background: #f0f0f0 !important;
+}
+
+.timePicker {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.timePicker-column {
+  flex: 1;
+  margin: 0 10px;
+  text-align: center;
+  height: 380px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+.timePicker-column::-webkit-scrollbar {
+  display: none;
+}
+
+.timePicker-column table {
+  width: 100%;
+  overflow: hidden;
+  border-collapse: collapse;
+}
+
+.timePicker-column td {
+  padding: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.timePicker-column td.current-hours,
+.timePicker-column td.current-minutes,
+.timePicker-column td.current-seconds,
+.timePicker-column td.current-meridiem {
+  background: #45494e;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.timePicker-column td.selected-hours,
+.timePicker-column td.selected-minutes,
+.timePicker-column td.selected-seconds,
+.timePicker-column td.selected-meridiem {
+  background: #bdbdbd;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.hours-cell,
+.minutes-cell,
+.seconds-cell,
+.meridiem-cell {
+  width: 50px !important;
+  height: 50px !important;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.form-control {
+  border-radius: unset !important;
+  border: 1px solid #dee2e6 !important;
+  border-right: 0 !important;
+}
+
+.custom-input-box {
+  width: 100%;
+}
+
+.custom-input {
+  width: 170px;
+  display: inline-block;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border-radius: unset !important;
+  border: 1px solid #dee2e6 !important;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  box-shadow: none;
+}
+
+.custom-input:focus {
+  border-radius: unset !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.c-input[readonly],
+.c-input[readonly]:focus,
+.c-input[readonly]:hover {
+  cursor: text;
+  background-color: #fff;
+}
+
+.r-input.c-input[readonly] {
+  border-right: 0px;
+}
+
+.i-sufix {
+  color: #aaa;
+  background: #fff;
+  font-size: 14px;
+  border-radius: 0px;
+  border-left: 0px;
+  border-right: 1px solid #dee2e6 !important;
+}
+
+.l-input {
+  border-left: 0px;
+  padding: .375rem 0;
+}
+
+.r-input {
+  border-right: 0px;
+  padding: .375rem .75rem;
+}
+
+.lr-input {
+  border-left: 0px;
+  border-right: 0px;
+  padding: .375rem 0;
+}
+
+.l-input::-webkit-input-placeholder,
+.lr-input::-webkit-input-placeholder {
+  color: #aaa;
+}

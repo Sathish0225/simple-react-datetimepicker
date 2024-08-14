@@ -24,12 +24,10 @@ You’ll need to install React and PropTypes separately since those dependencies
 import React, { useState } from "react";
 import DatePicker from "simple-react-datetimepicker";
 
-import "simple-react-datetimepicker/dist/DatePicker.css";
-
 const Example = () => {
   const [startDate, setStartDate] = useState("");
   return (
-    <DatePicker name="staticDate" id="staticDate" selected={startDate} onChange={(date) => setStartDate(date)} dateformat="dd/MM/yyyy" />
+    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} dateformat="dd/MM/yyyy" />
   );
 };
 ```
@@ -38,12 +36,10 @@ const Example = () => {
 import React, { useState } from "react";
 import DateTimePicker from "simple-react-datetimepicker";
 
-import "simple-react-datetimepicker/dist/DateTimePicker.css";
-
 const Example = () => {
   const [startDateTime, setStartDateTime] = useState("");
   return (
-    <DateTimePicker name="staticDateTime" id="staticDateTime" selected={startDateTime} onChange={(dateTime) => setStartDateTime(dateTime)} dateTimeformat="dd/MM/yyyy HH:mm:ss" />
+    <DateTimePicker selected={startDateTime} onChange={(dateTime) => setStartDateTime(dateTime)} dateTimeformat="dd/MM/yyyy HH:mm:ss" />
   );
 };
 ```
@@ -52,12 +48,44 @@ const Example = () => {
 import React, { useState } from "react";
 import TimePicker from "simple-react-datetimepicker";
 
-import "simple-react-datetimepicker/dist/TimePicker.css";
-
 const Example = () => {
   const [startTime, setStartTime] = useState("");
   return (
-    <TimePicker name="staticTime" id="staticTime" selected={startTime} onChange={(time) => setStartTime(time)} timeformat="HH:mm:ss" />
+    <TimePicker selected={startTime} onChange={(time) => setStartTime(time)} timeformat="HH:mm:ss" />
+  );
+};
+```
+
+```js
+import React, { useState } from "react";
+import DateRangePicker from "simple-react-datetimepicker";
+
+const Example = () => {
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  return (
+    <DateRangePicker selected={{startDate,endDate}} 
+      onChange={({ startDate, endDate }) => {
+              setStartDate(startDate);
+              setEndDate(endDate);
+            }} dateformat="dd/MM/yyyy" />
+  );
+};
+```
+
+```js
+import React, { useState } from "react";
+import DateTimeRangePicker from "simple-react-datetimepicker";
+
+const Example = () => {
+  const [startDateTime, setStartDateTime] = useState("");
+  const [endDateTime, setEndDateTime] = useState("");
+  return (
+    <DateTimeRangePicker selected={{ startDateTime, endDateTime }}
+            onChange={({ startDateTime, endDateTime }) => {
+              setStartDateTime(startDateTime);
+              setEndDateTime(endDateTime);
+            }} dateTimeformat="dd/MM/yyyy HH:mm:ss" />
   );
 };
 ```
@@ -82,6 +110,18 @@ The most basic use of the DatePicker, DateTimePicker and TimePicker can be descr
 
 ```js
 <TimePicker selected={startTime} onChange={(time) => setStartTime(time)}/>
+```
+
+### Date Range Picker
+
+```js
+<DateRangePicker selected={{startDate,endDate}} onChange={({ startDate, endDate }) => {setStartDate(startDate);setEndDate(endDate);}}/>
+```
+
+### DateTime Range Picker
+
+```js
+<DateTimeRangePicker selected={{startDateTime,endDateTime}} onChange={({ startDateTime, endDateTime }) => {setStartDateTime(startDateTime);setEndDateTime(endDateTime);}}/>
 ```
 
 ## License

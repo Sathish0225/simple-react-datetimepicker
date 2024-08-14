@@ -1,10 +1,9 @@
 /* eslint-disable no-loop-func */
 import React, { useState, useRef, useEffect } from "react";
-import { CiClock2 } from "react-icons/ci";
+import { FiClock } from "react-icons/fi";
 import { format, parse } from "date-fns";
-import "./TimePicker.css";
-
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./style.css";
 
 // Define valid time formats
 const VALID_TIME_FORMATS = [
@@ -123,12 +122,12 @@ const TimePicker = (props) => {
             onClick={handleTimeChange}
             placeholder={props.placeholder ?? "Select Time"}
           />
-          <span onClick={handleTimeChange} className={"input-group-text i-sufix text-dark"}>
-            <CiClock2 size={16} />
+          <span onClick={handleTimeChange} className={"input-group-text i-sufix text-secondary"}>
+            <FiClock size={16} />
           </span>
         </div>
         {pickerShow && (
-          <div ref={pickerRef} className="picker">
+          <div ref={pickerRef} className={`picker ${pickerShow ? "picker-show" : ""}`}>
             <TimeView
               selectedTime={selectedTime}
               handleTimeSelect={handleTimeSelect}

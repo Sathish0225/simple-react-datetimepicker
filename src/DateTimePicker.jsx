@@ -1,8 +1,9 @@
 /* eslint-disable no-loop-func */
 import React, { useState, useRef, useEffect } from "react";
-import { CiCalendar } from "react-icons/ci";
+import { FiChevronUp, FiChevronDown, FiCalendar } from "react-icons/fi";
 import { format, parse } from "date-fns";
-import "./DateTimePicker.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./style.css";
 
 // Define valid datetime formats
 const VALID_DATE_TIME_FORMATS = [
@@ -37,8 +38,8 @@ const DateTimePicker = (props) => {
   const [calendarShow, setCalendarShow] = useState(false);
   const [viewMode, setViewMode] = useState("days");
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
   const inputRef = useRef(null);
   const calendarRef = useRef(null);
 
@@ -98,7 +99,7 @@ const DateTimePicker = (props) => {
     const formattedDateTime = format(newDate, dateTimeFormat);
     setDateTime(formattedDateTime);
     setSelectedDate(newDate);
-    setSelectedTime(new Date());
+    setSelectedTime(newDate);
 
     if (props.onChange) {
       props.onChange(formattedDateTime);
@@ -106,7 +107,7 @@ const DateTimePicker = (props) => {
   };
 
   const handleTimeSelect = (time) => {
-    const newDate = new Date(selectedDate);
+    const newDate = new Date(time);
     newDate.setHours(time.getHours());
     newDate.setMinutes(time.getMinutes());
     newDate.setSeconds(time.getSeconds());
@@ -171,12 +172,12 @@ const DateTimePicker = (props) => {
             onClick={handleDateTimeChange}
             placeholder={props.placeholder ?? "Select Date and Time"}
           />
-          <span onClick={handleDateTimeChange} className={"input-group-text i-sufix text-dark"}>
-            <CiCalendar size={16} />
+          <span onClick={handleDateTimeChange} className={"input-group-text i-sufix text-secondary"}>
+            <FiCalendar size={16} />
           </span>
         </div>
         {calendarShow && (
-          <div ref={calendarRef} className="calendar">
+          <div ref={calendarRef} className={`calendar ${calendarShow ? "calendar-show" : ""}`}>
             {viewMode === "days" && (
               <DaysView
                 currentDate={currentDate}
@@ -227,18 +228,18 @@ const DaysView = ({
 }) => {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
+    "Janary",
+    "Febuary",
+    "March",
+    "April",
     "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
   const daysInMonth = new Date(
@@ -304,7 +305,7 @@ const DaysView = ({
             <thead>
               <tr>
                 {daysOfWeek.map((day) => (
-                  <th key={day}>{day}</th>
+                  <th key={day} className="week-days">{day}</th>
                 ))}
               </tr>
             </thead>
@@ -351,13 +352,15 @@ const getDayClass = (day, currentDate, selectedDate) => {
 
 const Header = ({ title, onPrevious, onNext, onTitleClick }) => (
   <div className="ymheaderdiv">
-    <button onClick={onPrevious} className="previous-button">
-      &lt;
-    </button>
     <h3 onClick={onTitleClick}>{title}</h3>
-    <button onClick={onNext} className="next-button">
-      &gt;
-    </button>
+    <div>
+      <button onClick={onPrevious} className="previous-button">
+        <FiChevronUp size={20} />
+      </button>
+      <button onClick={onNext} className="next-button">
+        <FiChevronDown size={20} />
+      </button>
+    </div>
   </div>
 );
 
@@ -389,7 +392,7 @@ const TimeView = ({ selectedTime, handleTimeSelect }) => {
     }
   };
 
-  const handleTimeChange = (h, m, mer) => {
+  const handleTimeChange = (h, m) => {
     const newDate = new Date();
     newDate.setHours(h);
     newDate.setMinutes(m);
