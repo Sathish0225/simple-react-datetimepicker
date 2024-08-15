@@ -1,10 +1,13 @@
-table {
+.calendar table,
+.picker table {
   width: 100%;
   border-collapse: collapse;
 }
 
-th,
-td {
+.calendar th,
+.calendar td,
+.picker th,
+.picker td {
   text-align: center;
   padding: 8px;
 }
@@ -13,7 +16,8 @@ td {
   color: #bdbdbd;
 }
 
-td span {
+.calendar td span,
+.picker td span {
   display: block;
   cursor: pointer;
 }
@@ -229,14 +233,32 @@ td span {
   cursor: pointer;
 }
 
-.form-control {
-  border-radius: unset !important;
-  border: 1px solid #dee2e6 !important;
-  border-right: 0 !important;
-}
-
 .custom-input-box {
   width: 100%;
+}
+
+.picker-input-group {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.picker-input-field {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: 1px solid #dee2e6 !important;
+  border-right: 0 !important;
+  border-radius: unset !important;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .custom-input {
@@ -258,29 +280,33 @@ td span {
   box-shadow: none;
 }
 
+.custom-input::placeholder {
+  font-size: 13px;
+}
+
 .custom-input:focus {
   border-radius: unset !important;
   outline: none !important;
   box-shadow: none !important;
 }
 
-.form-control:focus {
+.picker-input-field:focus {
   outline: none !important;
   box-shadow: none !important;
 }
 
-.c-input[readonly],
-.c-input[readonly]:focus,
-.c-input[readonly]:hover {
+.picker-c-input[readonly],
+.picker-c-input[readonly]:focus,
+.picker-c-input[readonly]:hover {
   cursor: text;
   background-color: #fff;
 }
 
-.r-input.c-input[readonly] {
+.picker-r-input.picker-c-input[readonly] {
   border-right: 0px;
 }
 
-.i-sufix {
+.picker-i-sufix {
   color: #aaa;
   background: #fff;
   font-size: 14px;
@@ -289,23 +315,23 @@ td span {
   border-right: 1px solid #dee2e6 !important;
 }
 
-.l-input {
+.picker-l-input {
   border-left: 0px;
   padding: .375rem 0;
 }
 
-.r-input {
+.picker-r-input {
   border-right: 0px;
   padding: .375rem .75rem;
 }
 
-.lr-input {
+.picker-lr-input {
   border-left: 0px;
   border-right: 0px;
   padding: .375rem 0;
 }
 
-.l-input::-webkit-input-placeholder,
-.lr-input::-webkit-input-placeholder {
+.picker-l-input::-webkit-input-placeholder,
+.picker-lr-input::-webkit-input-placeholder {
   color: #aaa;
 }

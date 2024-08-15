@@ -138,19 +138,19 @@ const DatePicker = (props) => {
   return (
     <>
       <div className="date-picker">
-        <div className="input-group">
+        <div className="picker-input-group">
           <input
             ref={inputRef}
             type="text"
             name={props.name}
             id={props.id}
-            className={props.className ?? "form-control r-input c-input"}
+            className={props.className ?? "picker-input-field picker-r-input picker-c-input"}
             value={datePicked}
             readOnly
             onClick={handleDateChange}
             placeholder={props.placeholder ?? "Select Date"}
           />
-          <span onClick={handleDateChange} className={"input-group-text i-sufix text-secondary"}>
+          <span onClick={handleDateChange} className={"input-group-text picker-i-sufix text-secondary"}>
             <FiCalendar size={16} />
           </span>
         </div>

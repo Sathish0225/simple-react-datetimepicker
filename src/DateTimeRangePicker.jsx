@@ -255,19 +255,19 @@ const DateTimeRangePicker = (props) => {
     return (
         <>
             <div className="date-picker">
-                <div className="input-group">
+                <div className="picker-input-group">
                     <input
                         ref={inputRef}
                         type="text"
                         name={props.name}
                         id={props.id}
-                        className={props.className ?? "form-control r-input c-input"}
+                        className={props.className ?? "picker-input-field picker-r-input picker-c-input"}
                         value={getDateTimeRangeText()}
                         readOnly
                         onClick={handleDateTimeChange}
                         placeholder={props.placeholder ?? "Select DateTime Range"}
                     />
-                    <span onClick={handleDateTimeChange} className={"input-group-text i-sufix text-secondary"}>
+                    <span onClick={handleDateTimeChange} className={"input-group-text picker-i-sufix text-secondary"}>
                         <FiCalendar size={16} />
                     </span>
                 </div>
@@ -286,6 +286,7 @@ const DateTimeRangePicker = (props) => {
                                 selectedStartDateTime={selectedStartDateTime}
                                 selectedEndDateTime={selectedEndDateTime}
                                 handleCustomFieldChange={handleCustomFieldChange}
+                                dateTimeFormat={dateTimeFormat}
                             />
                         )}
                         {viewMode === "months" && (
@@ -324,6 +325,7 @@ const DaysView = ({
     selectedStartDateTime,
     selectedEndDateTime,
     handleCustomFieldChange,
+    dateTimeFormat,
 }) => {
     const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const monthNames = [
@@ -423,6 +425,7 @@ const DaysView = ({
                         className="custom-input"
                         name="startDateTime"
                         value={startDateTime}
+                        placeholder={dateTimeFormat}
                         onChange={handleCustomFieldChange}
                     />
                     <span style={{ padding: "5px" }}>-</span>
@@ -431,6 +434,7 @@ const DaysView = ({
                         className="custom-input"
                         name="endDateTime"
                         value={endDateTime}
+                        placeholder={dateTimeFormat}
                         onChange={handleCustomFieldChange}
                     />
                 </div>

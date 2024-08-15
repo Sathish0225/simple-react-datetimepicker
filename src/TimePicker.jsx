@@ -110,19 +110,19 @@ const TimePicker = (props) => {
   return (
     <>
       <div className="time-picker">
-        <div className="input-group">
+        <div className="picker-input-group">
           <input
             ref={inputRef}
             type="text"
             name={props.name}
             id={props.id}
-            className={props.className ?? "form-control r-input c-input"}
+            className={props.className ?? "picker-input-field picker-r-input picker-c-input"}
             value={pickedTime}
             readOnly
             onClick={handleTimeChange}
             placeholder={props.placeholder ?? "Select Time"}
           />
-          <span onClick={handleTimeChange} className={"input-group-text i-sufix text-secondary"}>
+          <span onClick={handleTimeChange} className={"input-group-text picker-i-sufix text-secondary"}>
             <FiClock size={16} />
           </span>
         </div>
